@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TP1Calculatrice"
+        android:theme="@style/Theme.Calculatrice"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
