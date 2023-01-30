@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#293133"
+    tools:context=".MainActivity"
+    tools:ignore="HardcodedText">
+
+    <LinearLayout
+        android:layout_width="700dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="100dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/opview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#161E2A"
+            android:gravity="right|bottom"
+            android:text=""
+            android:textColor="#97CDAE"
+            android:textSize="50dp"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="ExtraText">
+
+            <Button
+                android:id="@+id/buRES"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#161E2A"
+                android:onClick="ResAction"
+                android:text="⌫"
+                android:textColor="#1ECA6B"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/butpour"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="DuplicateIds" />
+
+            <Button
+                android:id="@+id/butpour"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#161E2A"
+                android:onClick="opAction"
+                android:text="%"
+                android:textColor="#1ECA6B"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/butopDiv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="DuplicateIds" />
+
+            <Button
+                android:id="@+id/butopDiv"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="195dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#161E2A"
+                android:onClick="opAction"
+                android:text="/"
+                android:textColor="#1ECA6B"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/butDel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/butDel"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="290dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#161E2A"
+                android:onClick="DelAction"
+                android:text="del"
+                android:textColor="#1ECA6B"
+                android:textSize="15dp"
+                app:cornerRadius="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.66"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="ExtraText">
+
+            <Button
+                android:id="@+id/but7"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#293133"
+                android:lineSpacingExtra="8sp"
+                android:onClick="numberAction"
+                android:text="7"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/but8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/but8"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="8"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/but9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/but9"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="195dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="9"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/butopMul"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/butopMul"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="290dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#161E2A"
+                android:onClick="opAction"
+                android:text="*"
+                android:textColor="#1ECA6B"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.655"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="ExtraText">
+
+            <Button
+                android:id="@+id/but4"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="4"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/but5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/but5"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="5"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/but6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/but6"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="195dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="6"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/butopSous"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/butopSous"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="290dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#161E2A"
+                android:onClick="opAction"
+                android:text="-"
+                android:textColor="#1ECA6B"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.64"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="ExtraText">
+
+            <Button
+                android:id="@+id/but1"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="1"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/but2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/but2"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="2"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/but3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/but3"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="195dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="3"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/butopAdd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/butopAdd"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="290dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#161E2A"
+                android:onClick="opAction"
+                android:text="+"
+                android:textColor="#1ECA6B"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.64"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="239dp"
+            tools:ignore="ExtraText">
+
+            <Button
+                android:id="@+id/butSign"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#293133"
+                android:text="+/-"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/but0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/but0"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="0"
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/butPoint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/butPoint"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="195dp"
+                android:layout_marginTop="3dp"
+                android:backgroundTint="#293133"
+                android:onClick="numberAction"
+                android:text="."
+                android:textColor="#A4FFFFFF"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/butEqual"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/butEqual"
+                style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="290dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#1ECA6B"
+                android:onClick="EqualsAction"
+                android:text="="
+                android:textColor="#0D0F10"
+                android:textSize="15dp"
+                app:cornerRadius="36dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.64"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

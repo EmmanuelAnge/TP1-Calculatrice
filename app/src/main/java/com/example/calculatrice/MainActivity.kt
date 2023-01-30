@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     private var afterCalcul = false
 
 
-
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -183,7 +182,13 @@ class MainActivity : AppCompatActivity() {
                 newList.add(passedList[i])
         }
 
+
         return newList
+
+
+
     }
+
+
 
 }
