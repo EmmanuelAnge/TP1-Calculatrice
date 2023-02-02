@@ -11,9 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private var canAddOperation = false
-    private var canAddDecimal = true
     private var afterCalcul = false
-    private var Sign = false
     private var op=0
 
 
@@ -36,13 +34,6 @@ class MainActivity : AppCompatActivity() {
                     opview.text = ""
                     afterCalcul=false
                 }
-
-                if (view.text == ".") {
-                    if (canAddDecimal)
-                        opview.append(view.text)
-
-                    canAddDecimal = false
-                } else
                     opview.append(view.text)
 
                 canAddOperation = true
@@ -63,7 +54,6 @@ class MainActivity : AppCompatActivity() {
             op = op + 1
             opview.append(view.text)
             canAddOperation = false
-            canAddDecimal = true
             afterCalcul=false
 
         }
@@ -85,7 +75,7 @@ class MainActivity : AppCompatActivity() {
     fun Sign(view: View)
     {
         val displayText = opview.text.toString()
-        val pattern = "-?\\d+".toRegex()
+        val pattern = "\\d+".toRegex()
         val lastNumberMatch = pattern.findAll(displayText).lastOrNull()
         if (lastNumberMatch != null) {
             val lastNumberIndex = lastNumberMatch.range.first
@@ -94,22 +84,7 @@ class MainActivity : AppCompatActivity() {
             opview.text = newDisplayText
         }
 
-        /* val displayText = opview.text.toString()
-         val lastNumberIndex = displayText.lastIndexOf(Regex("-?\\d+"))
-         if (lastNumberIndex != -1) {
-             val lastNumber = displayText.substring(lastNumberIndex).toInt()
-             val newDisplayText = displayText.substring(0, lastNumberIndex) + -lastNumber
-             opview.text = newDisplayText
-         }
 
-
-         if(opview.text[0]=='-')
-             return
-
-         else{
-             opview.text = "-" + opview.text
-             Sign = true
-         }*/
     }
 
     fun EqualsAction(view: View)
@@ -135,80 +110,41 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-/* private fun numbs(): MutableList<Any>
-{
-    val list = mutableListOf<Any>()
-    var neg = false
-    var oldnumb = ""
-    for(char in opview.text)
-    {
-        if(opview.text[0]=='-' && !neg) {
-            oldnumb += '-'
-            neg=true
-        }else {
 
 
-            if (char.isDigit() || char == '.') {
-                oldnumb += char
+    private fun numbs(): MutableList<Any> {
+        val list = mutableListOf<Any>()
+        var currentNumber = ""
+        var isNegative = false
 
+        for (char in opview.text) {
+            if (char == '-' && currentNumber.isEmpty()) {
+                isNegative = true
+            } else if (char.isDigit() ) {
+                currentNumber += char
             } else {
-
-                list.add(oldnumb.toFloat())
-                oldnumb = ""
-                list.add(char)
-            }
-        }
-    }
-
-    if(oldnumb != "") {
-        list.add(oldnumb.toFloat())
-    }
-
-
-    return list
-}*/
-
-
-private fun numbs(): MutableList<Any>
-{
-    val list = mutableListOf<Any>()
-    var neg = false
-    var oldnumb = ""
-    for(char in opview.text)
-    {
-        if(opview.text[0]=='-' && !neg) {
-            oldnumb += '-'
-            neg=true
-        }else {
-
-
-            if (char.isDigit() || char == '.') {
-                oldnumb += char
-
-            } else {
-
-                if (neg) {
-                    list.add(-oldnumb.toFloatOrNull()!! ?: 0f)
-                } else {
-                    list.add(oldnumb.toFloatOrNull() ?: 0f)
+                if (isNegative) {
+                    currentNumber = "-$currentNumber"
+                    isNegative = false
                 }
-                oldnumb = ""
+
+                list.add(currentNumber.toFloat())
                 list.add(char)
+                currentNumber = ""
             }
         }
-    }
 
-    if(oldnumb != "") {
-        if (neg) {
-            list.add(-oldnumb.toFloatOrNull()!! )
-        } else {
-            list.add(oldnumb.toFloatOrNull() ?: 0f)
+        if (isNegative) {
+            currentNumber = "-$currentNumber"
         }
+
+        if (currentNumber.isNotEmpty()) {
+            list.add(currentNumber.toFloat())
+        }
+
+        return list
     }
 
-
-    return list
-}
 
 
 
@@ -288,5 +224,20 @@ private fun calcDiv(passedList: MutableList<Any>): MutableList<Any>
 
     return newList
 }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val newaff:CharSequence?=opview.text
+
+        outState.putCharSequence("resultat",newaff)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val resultatCharSeq:CharSequence?=savedInstanceState.getCharSequence("resultat",
+            0.toString()
+        )
+        opview.text=resultatCharSeq.toString()
+    }
 
 }
