@@ -289,4 +289,19 @@ private fun calcDiv(passedList: MutableList<Any>): MutableList<Any>
     return newList
 }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val newaff:CharSequence?=opview.text
+
+        outState.putCharSequence("resultat",newaff)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val resultatCharSeq:CharSequence?=savedInstanceState.getCharSequence("resultat",
+            0.toString()
+        )
+        opview.text=resultatCharSeq.toString()
+    }
+
 }
