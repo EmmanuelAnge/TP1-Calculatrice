@@ -7,286 +7,197 @@ import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-
 class MainActivity : AppCompatActivity() {
 
     private var canAddOperation = false
-    private var canAddDecimal = true
     private var afterCalcul = false
-    private var Sign = false
-    private var op=0
+    private var op = 0
+    var verif = ""
+    private var SiMoins=false
 
-
-
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 
 
-    fun numberAction(view: View)
-    {
+    fun numberAction(view: View) {
 
+        if (view is Button) {
 
-            if (view is Button) {
-
-
-                if(afterCalcul) {
-                    opview.text = ""
-                    afterCalcul=false
-                }
-
-                if (view.text == ".") {
-                    if (canAddDecimal)
-                        opview.append(view.text)
-
-                    canAddDecimal = false
-                } else
-                    opview.append(view.text)
-
-                canAddOperation = true
-                afterCalcul=false
+            if (afterCalcul) {
+                opview.text = ""
+                afterCalcul = false
             }
+            opview.append(view.text)
+
+            canAddOperation = true
+            afterCalcul = false
+        }
     }
 
 
-    fun opAction(view: View)
-    {
+    fun opAction(view: View) {
 
-        if(view is Button && canAddOperation)
-        {
-            if(op==1) {
+        if (view is Button && canAddOperation) {
+            if (view.text== "-")
+                SiMoins=true
+
+            if (op == 1) {
                 opview.text = calculs()
-                op=0
+                op = 0
             }
             op = op + 1
             opview.append(view.text)
             canAddOperation = false
-            canAddDecimal = true
-            afterCalcul=false
+            afterCalcul = false
 
         }
     }
 
 
-    fun DelAction(view: View)
-    {
+    fun DelAction(view: View) {
         opview.text = ""
+        if (SiMoins){}
+
     }
 
-    fun ResAction(view: View)
-    {
-        val length = opview.length()
-        if(length > 0)
-            opview.text = opview.text.subSequence(0, length - 1)
-    }
 
-    fun Sign(view: View)
-    {
-        val displayText = opview.text.toString()
-        val pattern = "-?\\d+".toRegex()
-        val lastNumberMatch = pattern.findAll(displayText).lastOrNull()
-        if (lastNumberMatch != null) {
-            val lastNumberIndex = lastNumberMatch.range.first
-            val lastNumber = lastNumberMatch.value.toInt()
-            val newDisplayText = displayText.substring(0, lastNumberIndex) + -lastNumber
-            opview.text = newDisplayText
+    fun ResAction(view: View) {
+
+            val length = opview.length()
+                if (length >= 2) {
+                    val value = opview.text[length - 2].toString()
+                    if (value == "-") {
+                        val final = opview.text[length - 1].toString()
+                        if (final.toIntOrNull() != null) {
+                            opview.text = opview.text.subSequence(0, length - 2)
+                        }
+                    } else {
+                        opview.text = opview.text.subSequence(0, length - 1)
+                    }
+                } else if (length == 1) {
+                    opview.text = opview.text.subSequence(0, length - 1)
+                }
         }
 
-        /* val displayText = opview.text.toString()
-         val lastNumberIndex = displayText.lastIndexOf(Regex("-?\\d+"))
-         if (lastNumberIndex != -1) {
-             val lastNumber = displayText.substring(lastNumberIndex).toInt()
-             val newDisplayText = displayText.substring(0, lastNumberIndex) + -lastNumber
-             opview.text = newDisplayText
-         }
 
+    fun Sign(view: View) {
+        if ( canAddOperation) {
+            val displayText = opview.text.toString()
+            val pattern = "\\d+".toRegex()
+            val lastNumberMatch = pattern.findAll(displayText).lastOrNull()
+            if (lastNumberMatch != null) {
+                val lastNumberIndex = lastNumberMatch.range.first
+                val lastNumber = lastNumberMatch.value.toInt()
+                val newDisplayText: String
+                if (lastNumberIndex != 0 && displayText[lastNumberIndex-1] == '-') {
+                    newDisplayText = displayText.substring(0, lastNumberIndex-1) + lastNumber
+                } else {
+                    newDisplayText = displayText.substring(0, lastNumberIndex) + "-" + lastNumber
+                }
+                opview.text = newDisplayText
 
-         if(opview.text[0]=='-')
-             return
-
-         else{
-             opview.text = "-" + opview.text
-             Sign = true
-         }*/
+            }
+        }
     }
 
-    fun EqualsAction(view: View)
-    {
+
+
+
+    fun EqualsAction(view: View) {
         op = 0
         opview.text = calculs()
-        afterCalcul=true
+        afterCalcul = true
 
     }
 
-    private fun calculs(): String
-    {
+    private fun calculs(): String {
         val numb = numbs()
-        if(numb.isEmpty()) return ""
+        if (numb.isEmpty()) return ""
 
-        val tempsDiv = CalctempsDiv(numb)
-        if(tempsDiv.isEmpty()) return ""
-
-        val result = addSous(tempsDiv)
-
+        val result = Calculate(numb)
 
         return result.toString()
     }
 
 
-/* private fun numbs(): MutableList<Any>
-{
-    val list = mutableListOf<Any>()
-    var neg = false
-    var oldnumb = ""
-    for(char in opview.text)
-    {
-        if(opview.text[0]=='-' && !neg) {
-            oldnumb += '-'
-            neg=true
-        }else {
+    private fun numbs(): MutableList<Any> {
+        val list = mutableListOf<Any>()
+        var currentNumber = ""
+        var isNegative = false
 
-
-            if (char.isDigit() || char == '.') {
-                oldnumb += char
-
+        for (char in opview.text) {
+            if (char == '-' && currentNumber.isEmpty()) {
+                isNegative = true
+            } else if (char.isDigit()) {
+                currentNumber += char
             } else {
+                if (isNegative) {
+                    currentNumber = "-$currentNumber"
+                    isNegative = false
+                }
 
-                list.add(oldnumb.toFloat())
-                oldnumb = ""
+                list.add(currentNumber.toFloat())
                 list.add(char)
-            }
-        }
-    }
-
-    if(oldnumb != "") {
-        list.add(oldnumb.toFloat())
-    }
-
-
-    return list
-}*/
-
-
-private fun numbs(): MutableList<Any>
-{
-    val list = mutableListOf<Any>()
-    var neg = false
-    var oldnumb = ""
-    for(char in opview.text)
-    {
-        if(opview.text[0]=='-' && !neg) {
-            oldnumb += '-'
-            neg=true
-        }else {
-
-
-            if (char.isDigit() || char == '.') {
-                oldnumb += char
-
-            } else {
-
-                if (neg) {
-                    list.add(-oldnumb.toFloatOrNull()!! ?: 0f)
-                } else {
-                    list.add(oldnumb.toFloatOrNull() ?: 0f)
-                }
-                oldnumb = ""
-                list.add(char)
-            }
-        }
-    }
-
-    if(oldnumb != "") {
-        if (neg) {
-            list.add(-oldnumb.toFloatOrNull()!! )
-        } else {
-            list.add(oldnumb.toFloatOrNull() ?: 0f)
-        }
-    }
-
-
-    return list
-}
-
-
-
-
-
-private fun addSous(passedList: MutableList<Any>): Float
-{
-    var result = passedList[0] as Float
-
-    for(i in passedList.indices)
-    {
-        if(passedList[i] is Char && i != passedList.lastIndex)
-        {
-            val op= passedList[i]
-            val nextnumb = passedList[i + 1] as Float
-            if (op == '+')
-                result += nextnumb
-            if (op == '-')
-                result -= nextnumb
-        }
-    }
-
-
-    return result
-}
-
-private fun CalctempsDiv(passedList: MutableList<Any>): MutableList<Any>
-{
-    var list = passedList
-    while (list.contains('*') || list.contains('/') || list.contains('%'))
-    {
-        list = calcDiv(list)
-    }
-    return list
-}
-
-private fun calcDiv(passedList: MutableList<Any>): MutableList<Any>
-{
-    val newList = mutableListOf<Any>()
-    var indice = passedList.size
-
-    for(i in passedList.indices)
-    {
-        if(passedList[i] is Char && i != passedList.lastIndex && i < indice)
-        {
-            val op = passedList[i]
-            val prenumb = passedList[i - 1] as Float
-            val nextnumb = passedList[i + 1] as Float
-            when(op)
-            {
-                '*' ->
-                {
-                    newList.add(prenumb  * nextnumb)
-                    indice = i + 1
-                }
-                '%' ->
-                {
-                    newList.add(prenumb  % nextnumb)
-                    indice = i + 1
-                }
-                '/' ->
-                {
-                    newList.add(prenumb  / nextnumb)
-                    indice = i + 1
-                }
-                else ->
-                {
-                    newList.add(prenumb )
-                    newList.add(op)
-                }
+                currentNumber = ""
             }
         }
 
-        if(i > indice)
-            newList.add(passedList[i])
+        if (isNegative) {
+            currentNumber = "-$currentNumber"
+        }
+
+        if (currentNumber.isNotEmpty()) {
+            list.add(currentNumber.toFloat())
+        }
+
+        return list
     }
 
-    return newList
-}
+
+    private fun Calculate(passedList: MutableList<Any>): Double {
+        var result = (passedList[0] as Float).toDouble()
+
+        for (i in passedList.indices) {
+            if (passedList[i] is Char && i != passedList.lastIndex) {
+                val op = passedList[i]
+                val nextnumb = (passedList[i + 1] as Float).toDouble()
+                if (op == '+')
+                    result += nextnumb
+                if (op == '-')
+                    result -= nextnumb
+                if (op == '*')
+                    result *= nextnumb
+                if (op == '/') {
+                    if (nextnumb == 0.0) {
+                        println("Division par zéro")
+                        return Double.NaN
+                    } else
+                        result /= nextnumb
+                }
+                if (op == '%')
+                    result = result.toInt().toDouble() % nextnumb.toInt().toDouble()
+            }
+        }
+        return result
+    }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val newaff: CharSequence? = opview.text
+
+        outState.putCharSequence("resultat", newaff)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val resultatCharSeq: CharSequence? = savedInstanceState.getCharSequence(
+            "resultat",
+            0.toString()
+        )
+        opview.text = resultatCharSeq.toString()
+    }
 
 }
