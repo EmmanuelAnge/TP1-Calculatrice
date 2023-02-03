@@ -7,28 +7,65 @@ import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-
 class MainActivity : AppCompatActivity() {
 
     private var canAddOperation = false
-    private var canAddDecimal = true
     private var afterCalcul = false
-    private var Sign = false
+<<<<<<< HEAD
+    private var op = 0
+    private var SiMoins=false
+=======
+<<<<<<< HEAD
+    private var op = 0
+    var verif = ""
+    private var SiMoins=false
+=======
+<<<<<<< HEAD
+    private var op = 0
+    var verif = ""
+    private var SiMoins=false
+=======
+<<<<<<< HEAD
+    private var op = 0
+    var verif = ""
+    private var SiMoins=false
+=======
     private var op=0
+>>>>>>> 19c82249e0a06713c92b83f36dd9bf91668490f5
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
 
-
-
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 
 
-    fun numberAction(view: View)
-    {
+    fun numberAction(view: View) {
 
+        if (view is Button) {
 
+<<<<<<< HEAD
+            if (afterCalcul) {
+                opview.text = ""
+                afterCalcul = false
+=======
+<<<<<<< HEAD
+            if (afterCalcul) {
+                opview.text = ""
+                afterCalcul = false
+=======
+<<<<<<< HEAD
+            if (afterCalcul) {
+                opview.text = ""
+                afterCalcul = false
+=======
+<<<<<<< HEAD
+            if (afterCalcul) {
+                opview.text = ""
+                afterCalcul = false
+=======
             if (view is Button) {
 
 
@@ -36,56 +73,219 @@ class MainActivity : AppCompatActivity() {
                     opview.text = ""
                     afterCalcul=false
                 }
-
-                if (view.text == ".") {
-                    if (canAddDecimal)
-                        opview.append(view.text)
-
-                    canAddDecimal = false
-                } else
                     opview.append(view.text)
 
                 canAddOperation = true
                 afterCalcul=false
+>>>>>>> 19c82249e0a06713c92b83f36dd9bf91668490f5
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
             }
+            opview.append(view.text)
+
+            canAddOperation = true
+            afterCalcul = false
+        }
     }
 
 
-    fun opAction(view: View)
-    {
+    fun opAction(view: View) {
 
-        if(view is Button && canAddOperation)
-        {
-            if(op==1) {
+        if (view is Button && canAddOperation) {
+            if (view.text== "-")
+                SiMoins=true
+
+            if (op == 1) {
                 opview.text = calculs()
-                op=0
+                op = 0
             }
             op = op + 1
             opview.append(view.text)
             canAddOperation = false
-            canAddDecimal = true
+<<<<<<< HEAD
+            afterCalcul = false
+=======
+<<<<<<< HEAD
+            afterCalcul = false
+=======
+<<<<<<< HEAD
+            afterCalcul = false
+=======
+<<<<<<< HEAD
+            afterCalcul = false
+=======
             afterCalcul=false
+>>>>>>> 19c82249e0a06713c92b83f36dd9bf91668490f5
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
 
         }
     }
 
 
-    fun DelAction(view: View)
-    {
+    fun DelAction(view: View) {
         opview.text = ""
+        if (SiMoins){}
+
     }
 
-    fun ResAction(view: View)
-    {
-        val length = opview.length()
-        if(length > 0)
-            opview.text = opview.text.subSequence(0, length - 1)
+<<<<<<< HEAD
+
+    fun ResAction(view: View) {
+
+            val length = opview.length()
+=======
+<<<<<<< HEAD
+
+    fun ResAction(view: View) {
+
+            val length = opview.length()
+                if (length >= 2) {
+                    val value = opview.text[length - 2].toString()
+                    if (value == "-") {
+                        val final = opview.text[length - 1].toString()
+                        if (final.toIntOrNull() != null) {
+                            opview.text = opview.text.subSequence(0, length - 2)
+                        }
+                    } else {
+                        opview.text = opview.text.subSequence(0, length - 1)
+                    }
+                } else if (length == 1) {
+                    opview.text = opview.text.subSequence(0, length - 1)
+                }
+        }
+
+
+    fun Sign(view: View) {
+        if (canAddOperation) {
+            val displayText = opview.text.toString()
+            val pattern = "\\d+(\\.\\d+)?".toRegex()
+            val lastNumberMatch = pattern.findAll(displayText).lastOrNull()
+            if (lastNumberMatch != null) {
+                val lastNumberIndex = lastNumberMatch.range.first
+                val lastNumber = lastNumberMatch.value.toDouble()
+
+                val newDisplayText: String
+                if (lastNumberIndex != 0 && displayText[lastNumberIndex-1] == '-') {
+                    newDisplayText = displayText.substring(0, lastNumberIndex-1) + lastNumber
+                } else {
+                    newDisplayText = displayText.substring(0, lastNumberIndex) + "-" + lastNumber
+                }
+                opview.text = newDisplayText
+            }
+        }
     }
 
+
+
+
+=======
+
+<<<<<<< HEAD
+    fun ResAction(view: View) {
+
+            val length = opview.length()
+=======
+<<<<<<< HEAD
+    fun ResAction(view: View) {
+
+            val length = opview.length()
+
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
+                if (length >= 2) {
+                    val value = opview.text[length - 2].toString()
+                    if (value == "-") {
+                        val final = opview.text[length - 1].toString()
+                        if (final.toIntOrNull() != null) {
+                            opview.text = opview.text.subSequence(0, length - 2)
+                        }
+                    } else {
+                        opview.text = opview.text.subSequence(0, length - 1)
+                    }
+                } else if (length == 1) {
+                    opview.text = opview.text.subSequence(0, length - 1)
+                }
+<<<<<<< HEAD
+        }
+
+
+    fun Sign(view: View) {
+        if (canAddOperation) {
+            val displayText = opview.text.toString()
+            val pattern = "\\d+(\\.\\d+)?".toRegex()
+            val lastNumberMatch = pattern.findAll(displayText).lastOrNull()
+            if (lastNumberMatch != null) {
+                val lastNumberIndex = lastNumberMatch.range.first
+                val lastNumber = lastNumberMatch.value.toDouble()
+
+                val newDisplayText: String
+                if (lastNumberIndex != 0 && displayText[lastNumberIndex-1] == '-') {
+                    newDisplayText = displayText.substring(0, lastNumberIndex-1) + lastNumber
+                } else {
+                    newDisplayText = displayText.substring(0, lastNumberIndex) + "-" + lastNumber
+                }
+                opview.text = newDisplayText
+            }
+        }
+    }
+
+
+
+
+=======
+<<<<<<< HEAD
+        }
+
+
+    fun Sign(view: View) {
+        if ( canAddOperation) {
+            val displayText = opview.text.toString()
+            val pattern = "\\d+".toRegex()
+            val lastNumberMatch = pattern.findAll(displayText).lastOrNull()
+            if (lastNumberMatch != null) {
+                val lastNumberIndex = lastNumberMatch.range.first
+                val lastNumber = lastNumberMatch.value.toInt()
+                val newDisplayText: String
+                if (lastNumberIndex != 0 && displayText[lastNumberIndex-1] == '-') {
+                    newDisplayText = displayText.substring(0, lastNumberIndex-1) + lastNumber
+                } else {
+                    newDisplayText = displayText.substring(0, lastNumberIndex) + "-" + lastNumber
+                }
+                opview.text = newDisplayText
+
+            }
+        }
+    }
+
+
+
+
+=======
+        }
+
+
+    fun Sign(view: View) {
+        if (verif != opview.text.toString() && canAddOperation) {
+            val displayText = opview.text.toString()
+            println(displayText.length)
+            val pattern = "\\d+".toRegex()
+            val lastNumberMatch = pattern.findAll(displayText).lastOrNull()
+            if (lastNumberMatch != null) {
+                val lastNumberIndex = lastNumberMatch.range.first
+                val lastNumber = lastNumberMatch.value.toInt()*(-1)
+                val newDisplayText = displayText.substring(0, lastNumberIndex) + lastNumber
+                opview.text = newDisplayText
+                verif = newDisplayText
+            }
+        }
+=======
     fun Sign(view: View)
     {
         val displayText = opview.text.toString()
-        val pattern = "-?\\d+".toRegex()
+        val pattern = "\\d+".toRegex()
         val lastNumberMatch = pattern.findAll(displayText).lastOrNull()
         if (lastNumberMatch != null) {
             val lastNumberIndex = lastNumberMatch.range.first
@@ -94,121 +294,102 @@ class MainActivity : AppCompatActivity() {
             opview.text = newDisplayText
         }
 
-        /* val displayText = opview.text.toString()
-         val lastNumberIndex = displayText.lastIndexOf(Regex("-?\\d+"))
-         if (lastNumberIndex != -1) {
-             val lastNumber = displayText.substring(lastNumberIndex).toInt()
-             val newDisplayText = displayText.substring(0, lastNumberIndex) + -lastNumber
-             opview.text = newDisplayText
-         }
 
-
-         if(opview.text[0]=='-')
-             return
-
-         else{
-             opview.text = "-" + opview.text
-             Sign = true
-         }*/
+>>>>>>> 19c82249e0a06713c92b83f36dd9bf91668490f5
     }
 
-    fun EqualsAction(view: View)
-    {
+
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
+    fun EqualsAction(view: View) {
         op = 0
         opview.text = calculs()
-        afterCalcul=true
+        afterCalcul = true
 
     }
 
-    private fun calculs(): String
-    {
+    private fun calculs(): String {
         val numb = numbs()
-        if(numb.isEmpty()) return ""
+        if (numb.isEmpty()) return ""
 
-        val tempsDiv = CalctempsDiv(numb)
-        if(tempsDiv.isEmpty()) return ""
-
-        val result = addSous(tempsDiv)
-
+        val result = Calculate(numb)
 
         return result.toString()
     }
 
 
-/* private fun numbs(): MutableList<Any>
-{
-    val list = mutableListOf<Any>()
-    var neg = false
-    var oldnumb = ""
-    for(char in opview.text)
-    {
-        if(opview.text[0]=='-' && !neg) {
-            oldnumb += '-'
-            neg=true
-        }else {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
 
 
-            if (char.isDigit() || char == '.') {
-                oldnumb += char
+>>>>>>> 19c82249e0a06713c92b83f36dd9bf91668490f5
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
+    private fun numbs(): MutableList<Any> {
+        val list = mutableListOf<Any>()
+        var currentNumber = ""
+        var isNegative = false
 
+        for (char in opview.text) {
+            if (char == '-' && currentNumber.isEmpty()) {
+                isNegative = true
+<<<<<<< HEAD
+            } else if (char.isDigit()) {
+=======
+<<<<<<< HEAD
+            } else if (char.isDigit()) {
+=======
+<<<<<<< HEAD
+            } else if (char.isDigit()) {
+=======
+<<<<<<< HEAD
+            } else if (char.isDigit()) {
+=======
+            } else if (char.isDigit() ) {
+>>>>>>> 19c82249e0a06713c92b83f36dd9bf91668490f5
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
+                currentNumber += char
             } else {
-
-                list.add(oldnumb.toFloat())
-                oldnumb = ""
-                list.add(char)
-            }
-        }
-    }
-
-    if(oldnumb != "") {
-        list.add(oldnumb.toFloat())
-    }
-
-
-    return list
-}*/
-
-
-private fun numbs(): MutableList<Any>
-{
-    val list = mutableListOf<Any>()
-    var neg = false
-    var oldnumb = ""
-    for(char in opview.text)
-    {
-        if(opview.text[0]=='-' && !neg) {
-            oldnumb += '-'
-            neg=true
-        }else {
-
-
-            if (char.isDigit() || char == '.') {
-                oldnumb += char
-
-            } else {
-
-                if (neg) {
-                    list.add(-oldnumb.toFloatOrNull()!! ?: 0f)
-                } else {
-                    list.add(oldnumb.toFloatOrNull() ?: 0f)
+                if (isNegative) {
+                    currentNumber = "-$currentNumber"
+                    isNegative = false
                 }
-                oldnumb = ""
+
+                list.add(currentNumber.toFloat())
                 list.add(char)
+                currentNumber = ""
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
             }
         }
-    }
 
-    if(oldnumb != "") {
-        if (neg) {
-            list.add(-oldnumb.toFloatOrNull()!! )
-        } else {
-            list.add(oldnumb.toFloatOrNull() ?: 0f)
+        if (isNegative) {
+            currentNumber = "-$currentNumber"
         }
+
+        if (currentNumber.isNotEmpty()) {
+            list.add(currentNumber.toFloat())
+        }
+
+        return list
     }
 
-
-    return list
-}
 
 
 
@@ -279,14 +460,121 @@ private fun calcDiv(passedList: MutableList<Any>): MutableList<Any>
                     newList.add(prenumb )
                     newList.add(op)
                 }
+>>>>>>> 19c82249e0a06713c92b83f36dd9bf91668490f5
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
             }
         }
 
-        if(i > indice)
-            newList.add(passedList[i])
+        if (isNegative) {
+            currentNumber = "-$currentNumber"
+        }
+
+        if (currentNumber.isNotEmpty()) {
+            list.add(currentNumber.toFloat())
+        }
+
+        return list
     }
 
-    return newList
-}
+
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
+    private fun Calculate(passedList: MutableList<Any>): Double {
+        var result = (passedList[0] as Float).toDouble()
+
+        for (i in passedList.indices) {
+            if (passedList[i] is Char && i != passedList.lastIndex) {
+                val op = passedList[i]
+                val nextnumb = (passedList[i + 1] as Float).toDouble()
+                if (op == '+')
+                    result += nextnumb
+                if (op == '-')
+                    result -= nextnumb
+                if (op == '*')
+                    result *= nextnumb
+                if (op == '/') {
+                    if (nextnumb == 0.0) {
+                        println("Division par zéro")
+                        return Double.NaN
+                    } else
+                        result /= nextnumb
+                }
+                if (op == '%')
+                    result = result.toInt().toDouble() % nextnumb.toInt().toDouble()
+            }
+        }
+        return result
+    }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val newaff: CharSequence? = opview.text
+
+        outState.putCharSequence("resultat", newaff)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val newaff:CharSequence?=opview.text
+
+        outState.putCharSequence("resultat",newaff)
+>>>>>>> 19c82249e0a06713c92b83f36dd9bf91668490f5
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
+        val resultatCharSeq: CharSequence? = savedInstanceState.getCharSequence(
+            "resultat",
+            0.toString()
+        )
+        opview.text = resultatCharSeq.toString()
+    }
 
 }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+        val resultatCharSeq:CharSequence?=savedInstanceState.getCharSequence("resultat",
+            0.toString()
+        )
+        opview.text=resultatCharSeq.toString()
+    }
+
+}
+>>>>>>> 19c82249e0a06713c92b83f36dd9bf91668490f5
+>>>>>>> a88f8291d1df0d771d17f3f66f2c5c4e750c3dde
+>>>>>>> a0b3681d662d50d6df930f4c1d7e94791fcf357f
+>>>>>>> 062bc12eaf23fd11e1ced7b4d5994d449a04bb16
