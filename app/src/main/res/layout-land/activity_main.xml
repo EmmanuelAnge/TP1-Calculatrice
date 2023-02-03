@@ -60,7 +60,7 @@
                 android:layout_marginEnd="48dp"
                 android:backgroundTint="#161E2A"
                 android:onClick="DelAction"
-                android:text="del"
+                android:text="res"
                 android:textColor="#1ECA6B"
                 android:textSize="15dp"
                 app:cornerRadius="30dp"

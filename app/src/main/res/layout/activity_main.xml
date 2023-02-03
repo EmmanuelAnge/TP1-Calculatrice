@@ -31,6 +31,7 @@
             android:visibility="visible"
             tools:visibility="visible"
             android:textSize="70sp"
+
             />
 
         <View
@@ -52,10 +53,10 @@
                 android:layout_height="70dp"
                 android:layout_marginStart="20dp"
                 android:backgroundTint="#161E2A"
-                android:text="⌫"
-                android:onClick="ResAction"
+                android:text="res"
+                android:onClick="DelAction"
                 android:textColor="#1ECA6B"
-                android:textSize="30sp"
+                android:textSize="10sp"
                 app:cornerRadius="36dp"
                 app:layout_constraintEnd_toStartOf="@+id/butpour"
                 app:layout_constraintStart_toStartOf="parent"
@@ -102,10 +103,10 @@
                 android:layout_marginStart="290dp"
                 android:layout_marginEnd="20dp"
                 android:backgroundTint="#161E2A"
-                android:text="del"
-                android:onClick="DelAction"
+                android:text="⌫"
+                android:onClick="ResAction"
                 android:textColor="#1ECA6B"
-                android:textSize="10sp"
+                android:textSize="25sp"
                 app:cornerRadius="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.793"
@@ -379,7 +380,6 @@
                 android:layout_height="70dp"
                 android:layout_marginStart="195dp"
                 android:backgroundTint="#293133"
-                android:onClick="numberAction"
                 android:text="."
                 android:textColor="#A4FFFFFF"
                 android:textSize="34sp"
