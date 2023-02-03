@@ -54,8 +54,14 @@ class MainActivity : AppCompatActivity() {
                 SiMoins = true
 
             if (op == 1) {
-                opview.text = calculs()
-                op = 0
+                if (opview.text.contains(".")||opview.text.contains("/")){
+                    opview.text = calculs()
+                    op = 0
+                }else{
+                    opview.text = calculsEntier()
+                    op = 0
+                }
+
             }
             op = op + 1
             opview.append(view.text)
@@ -120,7 +126,13 @@ class MainActivity : AppCompatActivity() {
 
 
     fun EqualsAction(view: View) {
-        op = 0
+
+        if (opview.text.endsWith("+")||opview.text.endsWith("/")
+            ||opview.text.endsWith("%")||opview.text.endsWith("*")
+            ||opview.text.endsWith("-")){
+            opview.text=opview.text
+        }else{
+            op = 0
         if (opview.text.contains(".")|| opview.text.contains("/")){
             opview.text = calculs()
         }else{
@@ -129,6 +141,7 @@ class MainActivity : AppCompatActivity() {
 
         afterCalcul = true
 
+    }
     }
 
     private fun calculsEntier(): String {
